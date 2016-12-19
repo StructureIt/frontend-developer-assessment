@@ -1,61 +1,55 @@
-# Technical assessment for frontend developer
+# musicbrainz-lastfm-search
 
-## The purpose of the assessment is to test your ability:
-* build a front end using HTML and CSS using responsive design
-* use JavaScript efficiently
-* integration with external APIs using JavaScript
+##Description
+Search artists and release from MusicBrainz and LastFM API using AngularJS
 
-## Please use the following tools as part of your solution:
-* HTML(5)
-* CSS(3) and/or Bootstrap
-* JavaScript, jQuery, EmberJS, AngularJS, Knockout
+##Tools/Technologies
+- HTML5
+- CSS
+- Bootstrap
+- JavaScript
+- AngularJS
 
-## What is expected?
-The assessment requires you to build a front end to allow an end user to search for their favourite artist using the last.fm API and add the artist to a list of favourite artists. Further to this, the front should allow the user to find the releases for a specific artist, and add releases to their favourites. Finally the front end should allow the user to see their favourites and update their favourites.
+##Notes
+The application is executed to run serverless, in that you don't need to have server instance
+running to be able to use the application. Just double click on the index.html file and start
+from there.
 
-***Junior developer role***
-Do not implement the favouriting functionality nor implement the releases functionality mentioned.
+Initially, the different sections of the pages were divided into templates - one separate file
+per template. However, due to the security issues of Chrome, is not possible. In the end it was
+decided to just use inline templates. 
 
-### Artist search
-When the user selects the last.fm link from the navigation bar, the front end will allow the user to search for their favourite artist. The information is retrieve via AJAX from the last.fm API. The search result from the last.fm API is then displayed in the search results list. From this list the user is able to add an artist to a short list. Once in the short list an arist can be added to the user's favourites.
+Also, instead of using ngRoute, I decided to use ui.router, which I found easier to implement. 
 
-![last.fm.png](images/lastfm.png)
-![Short List](images/shortlist.png)
+For the UI and responsiveness, this is not my expertise, and you may notice that the pages are
+not as responsive as I'd want it to be.
 
-### Releases for an artist
-When the user selects the MusicBrainz link from the navigation bar, the front end will allow the user to search for an artist using the MusicBrainz API. The search results of the search is shown in the search results list. From the search result list, the user can select to see all releases by the artist by clicking on the "show releases" link. When clicking the link, the releases for the corresponding artist will be retrieved from the MusicBrainz API and displayed in the releases list. The following release information is show:
+Lastly, I ran out of time to add testing to the application. So I am leaving this as is. All 
+features have been tested using Chrome, and their responsiveness is also tested through Chromes'
+developer tools.
 
-*	Year of release
-*	Title of release
-*	The label releasing the release
-*	Number of tracks on the release
-*	Ability to add the release to the user's favourites.
+##Instructions
 
-![musicBrianz.png](images/musicbrainz.png)
+MusicBrainz - Searching MusicBrainz is straightforward. Just key in an artist name and it will
+look for matching artist in MusicBrainz database. The initial request is only to search for the 
+artist. Once you click the Show Releases button, the application will issue another request to 
+retrieve the releases for the artist. 
 
-![Releases](images/releases.png)
+Releases that are retrieved, are stored locally so that succeeding clicks on Show Releases, won't 
+have to send another request to the API, and just loads the stored data.
 
-### User favourites
-When the user selects the Favourites link from the navigation bar, the front end will show the user's favourite artists and release in two different lists. The user should have the ability to remove artists and release from their favourites. The user's favourite can either be stored in local browser storage, cookies or a session variable. The information **does not need to be persisted to a backend system**.
+You can favorite a release by clicking the star button that sits beside a specific release. Favorited 
+releases are shown in the Favourite page.
 
-![Favourites](images/favourites.png)
+LastFM - The LastFM search is a bit tricky. An artist needs to be shortlisted first, and then favorited, 
+before it is displayed in the Favourite page. Same with the MusicBrainz search, just enter an artist to 
+search, and click on the + button of the artist to shortlist. In the shortlist section (bottom of the page) 
+you can favorite an artist for it to show in the Favourite page.
 
-## Supporting documentation
-* The MusicBrainz API is well documented and the information can be found at http://musicbrainz.org/doc/Development/XML_Web_Service/Version_2/Search
-* Documentation regarding the last.fm API can be found at http://www.last.fm/api
+Favourite   - All the favorited Artists and Releases are shown here in two separate lists. A user has the 
+ability to unfavorite or favorite an artist/release already on the list.
 
-## What should be part of your solution?
-* The solution should be delivered as a collection (or single) of HTML pages / application with all the required CSS and JavaScript files.
-* Any other documentation needed to execute your solution
+>> Note: The list of artist and releases, whether they are show on the list, refreshes when the user navigates 
+away from the Favourites page, and navigates right back.
 
-## How will the technical assessment be evaluated?
-* The code will evaluated for clarity, design and readability.
-* If any tests are part of the submitted solution, the tests will be run the test the solution. The tests will be evaluated to verify the quality of the tests.
-* The solution will be opened in the Chrome browser and the functionality described above will be tests. Both positive and negative tests will be done against the solution.
-* Responsive layouts will be simulated using Chrome's developer tools.
-
-## How do I submit my solution?
-Send a pull request from your repository.
-
-## Questions or comments
-Please use the issues functionality on Github. All questions will be answered via Github.
+                
